@@ -6,7 +6,7 @@ public class ConsoleProgress implements Runnable{
         int count = 0;
         String[] process = {"--", "\\", "|", "/"};
         while (!Thread.currentThread().isInterrupted()) {
-            if (count == 4) {
+            if (count == process.length) {
                 count = 0;
             }
             System.out.print("\n load: " + process[count++]);
