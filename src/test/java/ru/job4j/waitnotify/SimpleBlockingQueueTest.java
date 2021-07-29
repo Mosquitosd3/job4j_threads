@@ -17,10 +17,15 @@ public class SimpleBlockingQueueTest {
         });
 
         Thread consumer = new Thread(() -> {
-            queue.poll();
-            queue.poll();
-            queue.poll();
-            queue.poll();
+            try {
+                queue.poll();
+                queue.poll();
+                queue.poll();
+                queue.poll();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
         });
 
         try {

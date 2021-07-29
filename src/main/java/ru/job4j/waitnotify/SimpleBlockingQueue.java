@@ -23,6 +23,7 @@ public class SimpleBlockingQueue<T> {
                     wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
             queue.offer(value);
@@ -31,15 +32,11 @@ public class SimpleBlockingQueue<T> {
         }
     }
 
-    public T poll() {
+    public T poll() throws InterruptedException {
         T rsl = null;
         synchronized (this) {
             while (queue.isEmpty()) {
-                try {
-                    wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                wait();
             }
             rsl = queue.poll();
             System.out.println("poll: " + rsl);
@@ -47,6 +44,4 @@ public class SimpleBlockingQueue<T> {
         }
         return rsl;
     }
-
-
 }
