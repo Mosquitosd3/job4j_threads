@@ -39,4 +39,8 @@ public class SimpleBlockingQueue<T> {
         }
         return rsl;
     }
+
+    public boolean isEmpty() {
+        return queue.isEmpty();
+    }
 }
